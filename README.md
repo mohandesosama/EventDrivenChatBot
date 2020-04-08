@@ -174,7 +174,7 @@ print("---No chatbot, let me ask you that again...")
 bot.handle_message("age?")
 
 ```
-![](https://youtu.be/f_GPA9ULqJU)
+[![event driven chatbot](https://img.youtube.com/vi/f_GPA9ULqJU/0.jpg)](https://www.youtube.com/watch?v=f_GPA9ULqJU)
 
 ## References:
 This activity fully belongs to udacity
