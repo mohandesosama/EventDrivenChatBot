@@ -174,6 +174,7 @@ print("---No chatbot, let me ask you that again...")
 bot.handle_message("age?")
 
 ```
+![](https://youtu.be/f_GPA9ULqJU)
 
 ## References:
 This activity fully belongs to udacity
