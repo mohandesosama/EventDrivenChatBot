@@ -8,7 +8,7 @@ Instead, a chatbot should respond to "events" which come in the form of messages
 * gain familiarity with what types of problems event driven programming is good for.
 * write simple code that works within this event driven framework
 
-## TODO 1 - Read through and understand the `EventDrivenChatBot` class
+### TODO 1 - Read through and understand the `EventDrivenChatBot` class
 Read through the code below until you have a prediction for what will happen when you execute this code by pressing the Test Run button.
 
 ***NOTE - the last few lines of the code below is where the EventDrivenChatBot class is instantiated and its methods are called.***
