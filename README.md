@@ -83,7 +83,97 @@ Run the code above, How does it compare to what you expected to see? What happen
 ### TODO 3 - Modify the Code
 Once you feel like you understand how this code works, modify `EventDrivenChatBo`t so that the FIRST time it receives the message `"age?"` it calls `respond_to_age_request` but all subsequent `"age?"` messages should trigger a call to `respond_to_age_request_detailed`.
 
-You can find my solution in the next section of this lesson.
+## Solution of This activity
+
+The code below is my solution to the last TODO in the previous section. Below that you'll find a video walkthrough of the EventDrivenChatBot code.
+
+### Solution Overview
+There are many ways to solve this problem, but most solutions probably involve modeling the "state" of the chatbot as either
+
+* has NOT yet seen the message "age?" OR
+* HAS seen the message "age?"
+
+I implemented this by making three modifications...
+
+* In `__init__ I` added a state variable `has_been_asked_age` which is initially set to `False`
+
+* I define a function called `handle_age_request` which in turn calls either `respond_to_age_request` or `respond_to_age_request_detailed` depending on the STATE of the bot.
+
+* Register a callback that associated `handle_age_request` to the `"ask?"` message. Note that I also removed two calls to `register_callback` that were there previously.
+
+```python
+from datetime import datetime
+import time
+
+class EventDrivenChatBot:
+    
+    def __init__(self):
+        self.accepted_messages = {}
+        
+        # 1. ADDED THIS "STATE" VARIABLE
+        self.has_been_asked_age = False
+        
+        self.birth_time = datetime.now()
+        
+        # "registering" all callbacks
+        self.register_callback("hi", 
+                               self.respond_to_greeting)
+        self.register_callback("bye", 
+                               self.respond_to_departure)
+        
+        # 3. USING handle_age_request TO DISPATCH
+        #    RESPONSES TO "age?"
+        self.register_callback("age?",
+                               self.handle_age_request)
+    
+    def register_callback(self, message, callback):
+        """
+        Registers a callback to a message.
+        """
+        if message not in self.accepted_messages:
+            self.accepted_messages[message] = []
+        self.accepted_messages[message].append(callback)
+        
+    def respond_to_greeting(self):
+        print("Hello!")
+        
+    def respond_to_departure(self):
+        print("Nice chatting with you!")
+    
+    # 2. ADD DISPATCH POINT FOR PROCESSING "age?" MESSAGE
+    def handle_age_request(self):
+        if not self.has_been_asked_age:
+            self.has_been_asked_age = True
+            self.respond_to_age_request()
+        else:
+            self.respond_to_age_request_detailed()
+            
+    def respond_to_age_request(self):
+        age = datetime.now() - self.birth_time
+        print("I am", age.seconds, "seconds old.")
+        
+    def respond_to_age_request_detailed(self):
+        age = datetime.now() - self.birth_time
+        micros = age.microseconds
+        print("Technically, I'm", age.seconds, "seconds and", 
+              micros, "microseconds old")
+        
+    def handle_message(self, message):
+        if message not in self.accepted_messages:
+            print("sorry, I don't understand", message)
+        else:
+            callbacks = self.accepted_messages[message]
+            for callback in callbacks:
+                callback()
+                
+bot = EventDrivenChatBot()
+bot.handle_message("hi")
+time.sleep(1.3)
+bot.handle_message("age?")
+print("---No chatbot, let me ask you that again...")
+bot.handle_message("age?")
+
+```
 
 ## References:
 Matrials fully belongs to udacity
