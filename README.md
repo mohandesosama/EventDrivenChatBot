@@ -77,6 +77,13 @@ bot.handle_message("age?")
 bot.handle_message("bye")
 
 ```
+### TODO 2 - Run the Code
+Run the code above, How does it compare to what you expected to see? What happens between calling the `handle_message` method and actually printing the chatbot's response?
+
+### TODO 3 - Modify the Code
+Once you feel like you understand how this code works, modify `EventDrivenChatBo`t so that the FIRST time it receives the message `"age?"` it calls `respond_to_age_request` but all subsequent `"age?"` messages should trigger a call to `respond_to_age_request_detailed`.
+
+You can find my solution in the next section of this lesson.
 
 ## References:
 Matrials fully belongs to udacity
