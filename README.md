@@ -176,4 +176,4 @@ bot.handle_message("age?")
 ```
 
 ## References:
-Matrials fully belongs to udacity
+This activity fully belongs to udacity
