@@ -177,4 +177,4 @@ bot.handle_message("age?")
 [![event driven chatbot](https://img.youtube.com/vi/f_GPA9ULqJU/0.jpg)](https://www.youtube.com/watch?v=f_GPA9ULqJU)
 
 ## References:
-This activity fully belongs to udacity
+This activity is part of the Flaying Car and Autonomous Flight Nanodegree from Udacity [Join Now](https://www.udacity.com/course/flying-car-nanodegree--nd787)
